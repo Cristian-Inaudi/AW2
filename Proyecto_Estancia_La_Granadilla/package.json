@@ -1,0 +1,15 @@
+{
+  "name": "proyecto_estancia_la_granadilla",
+  "version": "1.0.0",
+  "description": "Proyecto a desarrollar durante el transcurso de la materia AWII.",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "check": "node --check index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Cristián Inaudi",
+  "license": "ISC",
+  "devDependencies": {}
+}

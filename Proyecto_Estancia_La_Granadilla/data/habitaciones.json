@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "nombre": "Casa de Piedra 1",
+    "tipo": "doble",
+    "capacidad": 2,
+    "precio_noche_arg": 70000,
+    "ubicacion": "Casco principal",
+    "activa": true,
+    "imagen": null
+  },
+  {
+    "id": 2,
+    "nombre": "Casa de Piedra 2",
+    "tipo": "triple",
+    "capacidad": 3,
+    "precio_noche_arg": 85000,
+    "ubicacion": "Casco principal",
+    "activa": true,
+    "imagen": null
+  },
+  {
+    "id": 3,
+    "nombre": "Galería 1",
+    "tipo": "doble",
+    "capacidad": 2,
+    "precio_noche_arg": 68000,
+    "ubicacion": "Ala Galería",
+    "activa": true,
+    "imagen": null
+  },
+  {
+    "id": 4,
+    "nombre": "Chalet del Alto",
+    "tipo": "suite",
+    "capacidad": 4,
+    "precio_noche_arg": 120000,
+    "ubicacion": "Sector Alto",
+    "activa": true,
+    "imagen": null
+  },
+  {
+    "id": 5,
+    "nombre": "La Isla",
+    "tipo": "doble",
+    "capacidad": 2,
+    "precio_noche_arg": 75000,
+    "ubicacion": "Sector Río",
+    "activa": true,
+    "imagen": null
+  }
+]
