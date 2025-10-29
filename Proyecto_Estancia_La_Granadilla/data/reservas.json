@@ -20,7 +20,12 @@
     "senia_pagada": true,
     "senia_vencimiento": "2025-08-17",
     "pagos": [
-      { "tipo": "seña", "fecha": "2025-08-16", "monto_ars": 63000, "medio": "transferencia" }
+      {
+        "tipo": "seña",
+        "fecha": "2025-08-16",
+        "monto_ars": 63000,
+        "medio": "transferencia"
+      }
     ],
     "total_arg": 210000,
     "requiere_factura": false,
@@ -72,8 +77,18 @@
     "senia_pagada": true,
     "senia_vencimiento": "2025-07-12",
     "pagos": [
-      { "tipo": "seña", "fecha": "2025-07-11", "monto_ars": 75000, "medio": "tarjeta" },
-      { "tipo": "final", "fecha": "2025-08-05", "monto_ars": 225000, "medio": "efectivo" }
+      {
+        "tipo": "seña",
+        "fecha": "2025-07-11",
+        "monto_ars": 75000,
+        "medio": "tarjeta"
+      },
+      {
+        "tipo": "final",
+        "fecha": "2025-08-05",
+        "monto_ars": 225000,
+        "medio": "efectivo"
+      }
     ],
     "total_arg": 300000,
     "requiere_factura": true,
@@ -100,7 +115,12 @@
     "senia_pagada": true,
     "senia_vencimiento": "2025-06-22",
     "pagos": [
-      { "tipo": "seña", "fecha": "2025-06-21", "monto_ars": 51000, "medio": "transferencia" }
+      {
+        "tipo": "seña",
+        "fecha": "2025-06-21",
+        "monto_ars": 51000,
+        "medio": "transferencia"
+      }
     ],
     "total_arg": 170000,
     "requiere_factura": false,
@@ -134,14 +154,28 @@
     "senia_pagada": true,
     "senia_vencimiento": "2025-09-03",
     "pagos": [
-      { "tipo": "seña", "fecha": "2025-09-02", "monto_ars": 76500, "medio": "QR" }
+      {
+        "tipo": "seña",
+        "fecha": "2025-09-02",
+        "monto_ars": 76500,
+        "medio": "QR"
+      }
     ],
     "total_arg": 255000,
     "requiere_factura": false,
     "cuit": null,
     "historial_asignacion": [
-      { "fecha": "2025-09-01", "accion": "seleccion_huesped", "id_habitacion": 4 },
-      { "fecha": "2025-09-01", "accion": "reasignacion_admin", "id_habitacion": 2, "motivo": "ocupación óptima / capacidad suficiente" }
+      {
+        "fecha": "2025-09-01",
+        "accion": "seleccion_huesped",
+        "id_habitacion": 4
+      },
+      {
+        "fecha": "2025-09-01",
+        "accion": "reasignacion_admin",
+        "id_habitacion": 2,
+        "motivo": "ocupación óptima / capacidad suficiente"
+      }
     ]
   },
   {

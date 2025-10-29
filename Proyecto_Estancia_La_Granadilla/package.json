@@ -1,15 +1,26 @@
 {
-  "name": "proyecto_estancia_la_granadilla",
+  "name": "segunda_entrega",
   "version": "1.0.0",
-  "description": "Proyecto a desarrollar durante el transcurso de la materia AWII.",
-  "type": "module",
+  "description": "Servidor Express.js para gestionar **usuarios**, **habitaciones** y **reservas**.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "check": "node --check index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Cristián Inaudi",
+  "keywords": [
+  "express",
+  "api",
+  "reservas",
+  "habitaciones",
+  "usuarios"
+  ],
+  "author": "",
   "license": "ISC",
-  "devDependencies": {}
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
 }

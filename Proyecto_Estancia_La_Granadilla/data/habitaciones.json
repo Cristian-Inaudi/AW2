@@ -2,11 +2,11 @@
   {
     "id": 1,
     "nombre": "Casa de Piedra 1",
-    "tipo": "doble",
+    "tipo": "triple",
     "capacidad": 2,
     "precio_noche_arg": 70000,
     "ubicacion": "Casco principal",
-    "activa": true,
+    "activa": false,
     "imagen": null
   },
   {

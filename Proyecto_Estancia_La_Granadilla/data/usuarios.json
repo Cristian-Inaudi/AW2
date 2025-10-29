@@ -8,7 +8,10 @@
     "contrasena": "ejemplo1",
     "es_admin": true,
     "activo": true,
-    "preferencias_habitaciones": [4, 1]
+    "preferencias_habitaciones": [
+      4,
+      1
+    ]
   },
   {
     "id": 2,
@@ -19,7 +22,10 @@
     "contrasena": "ejemplo2",
     "es_admin": true,
     "activo": true,
-    "preferencias_habitaciones": [2, 5]
+    "preferencias_habitaciones": [
+      2,
+      5
+    ]
   },
   {
     "id": 3,
@@ -30,7 +36,10 @@
     "contrasena": "ejemplo3",
     "es_admin": false,
     "activo": true,
-    "preferencias_habitaciones": [1, 5]
+    "preferencias_habitaciones": [
+      1,
+      5
+    ]
   },
   {
     "id": 4,
@@ -41,7 +50,9 @@
     "contrasena": "ejemplo4",
     "es_admin": false,
     "activo": true,
-    "preferencias_habitaciones": [3]
+    "preferencias_habitaciones": [
+      3
+    ]
   },
   {
     "id": 5,
@@ -52,7 +63,10 @@
     "contrasena": "ejemplo5",
     "es_admin": false,
     "activo": true,
-    "preferencias_habitaciones": [5, 2]
+    "preferencias_habitaciones": [
+      5,
+      2
+    ]
   },
   {
     "id": 6,
