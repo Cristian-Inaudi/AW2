@@ -1,7 +1,8 @@
 {
   "name": "segunda_entrega",
   "version": "1.0.0",
-  "description": "Servidor Express.js para gestionar **usuarios**, **habitaciones** y **reservas**.",
+  "description": "Servidor Express.js para gestionar usuarios, habitaciones y reservas.",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -15,7 +16,7 @@
   "habitaciones",
   "usuarios"
   ],
-  "author": "",
+  "author": "Cristián Inaudi",
   "license": "ISC",
   "dependencies": {
     "express": "^5.1.0"

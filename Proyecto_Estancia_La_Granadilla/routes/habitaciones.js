@@ -1,5 +1,6 @@
-const express = require("express");
-const fs = require("fs");
+import express from "express";
+import fs from "fs";
+
 const router = express.Router();
 
 const filePath = "./data/habitaciones.json";
@@ -68,6 +69,11 @@ router.post("/", (req, res) => {
         error: "Faltan datos obligatorios: nombre, tipo, capacidad, precio_noche_arg, ubicacion"
       });
     }
+    
+    //Valida que no exista actualmente la habitación registrada
+    if (habitaciones.some(h => h.nombre === nombre)) {
+      return res.status(400).json({ error: "Ya existe una habitación con ese nombre" });
+    }
 
     const nuevaHabitacion = {
       id: Date.now(),
@@ -93,4 +99,4 @@ router.post("/", (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

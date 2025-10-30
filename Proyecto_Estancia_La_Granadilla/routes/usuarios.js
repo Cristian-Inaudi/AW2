@@ -1,5 +1,6 @@
-const express = require("express");
-const fs = require("fs");
+import express from "express";
+import fs from "fs";
+
 const router = express.Router();
 
 const filePath = "./data/usuarios.json";
@@ -102,4 +103,4 @@ router.delete("/:id", (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

@@ -1,18 +1,21 @@
-const express = require("express");
-const fs = require("fs");
+import express from "express";
+
+import usuariosRoutes from "./routes/usuarios.js";
+import habitacionesRoutes from "./routes/habitaciones.js";
+import reservasRoutes from "./routes/reservas.js";
+
 const app = express();
 const PORT = 5000;
 
 app.use(express.json());
 
-// Importar rutas
-const usuariosRoutes = require("./routes/usuarios");
-const habitacionesRoutes = require("./routes/habitaciones");
-const reservasRoutes = require("./routes/reservas");
-
 app.use("/usuarios", usuariosRoutes);
 app.use("/habitaciones", habitacionesRoutes);
 app.use("/reservas", reservasRoutes);
+
+app.get("/", (req, res) => {
+  res.send("Proyecto funcionando correctamente ✅");
+});
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
