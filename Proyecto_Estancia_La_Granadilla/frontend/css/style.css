@@ -1,0 +1,621 @@
+/* ===============================
+   COLORES Y FUENTES
+=================================*/
+:root {
+  --beige: #F8F5E7;
+  --verde-oliva: #4E5B31;
+  --blanco: #ffffff;
+  --gris-suave: #e7e4d6;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  color: var(--verde-oliva);
+  background-color: var(--beige);
+  scroll-behavior: smooth;
+  margin: 0;
+  padding-top: 70;
+}
+
+/* ===============================
+   NAVBAR
+=================================*/
+.navbar {
+  background-color: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: none;
+  z-index: 10;
+}
+
+.navbar.scrolled {
+  background-color: rgba(248, 245, 231, 0.95);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid var(--verde-oliva);
+}
+
+.navbar-brand {
+  color: var(--verde-oliva);
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #3b4727;
+}
+
+.nav-link {
+  color: var(--verde-oliva);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #3b4727;
+}
+
+.logo-navbar {
+  height: 55px;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo-navbar:hover,
+.nav-link:hover {
+  transform: scale(1.05);
+}
+
+.navbar-custom {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.navbar-custom .nav-link {
+  color: whitesmoke;
+  transition: color 0.3s ease;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+  color: var(--beige);
+}
+
+.navbar-custom.scrolled {
+  background-color: rgba(248, 245, 231, 0.95);
+  border-bottom: 2px solid var(--verde-oliva);
+}
+
+.navbar-custom.scrolled .nav-link {
+  color: var(--verde-oliva);
+}
+
+.navbar-custom.scrolled .nav-link:hover {
+  color: #3b4727;
+}
+
+/* ===============================
+   HERO PRINCIPAL
+=================================*/
+.hero {
+  position: relative;
+  height: 100vh;
+  background: url('../img/imagen_principal.jpg') center center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--blanco);
+  transition: background-image 0.4s ease;
+}
+
+.hero .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 3rem;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  margin-top: 10px;
+}
+
+/* ===============================
+   SUBHEROS
+=================================*/
+.subhero {
+  position: relative;
+  height: 60vh;
+  background-size: cover;
+  background-position: center;
+  color: var(--blanco);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.subhero .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.subhero .hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+
+.alojamiento {
+  background-image: url('../img/habitacion1.jpg');
+  background-size: contain;
+
+}
+
+.actividades {
+  background-image: url('../img/actividad1.jpg');
+}
+
+.misreservas {
+  background-image: url('../img/mis_reservas.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 55vh;
+  position: relative;
+}
+
+.misreservas .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.misreservas .hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.misreservas h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: var(--beige);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.misreservas p {
+  color: #f8f5e7;
+  font-weight: 500;
+}
+
+[id] {
+  scroll-margin-top: 80px;
+}
+
+a.btn.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: grey;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInUp 0.6s forwards;
+}
+
+.fade-out {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.4s ease;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.table {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fffdf7;
+}
+
+.table th {
+  background-color: var(--verde-oliva);
+  color: var(--beige);
+}
+
+.table td,
+.table th {
+  vertical-align: middle;
+}
+
+/* ===============================
+   ESTILO CARRITO
+=================================*/
+
+.carrito-item {
+  height: 320px;
+  border-radius: 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carrito-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.carrito-item .overlay {
+  border-radius: 20px;
+}
+
+.carrito-info {
+  background: rgba(78, 91, 49, 0.8);
+  opacity: 1;
+  color: #fff;
+  border-radius: 0 0 20px 20px;
+  width: 100%;
+  padding: 1.2rem;
+}
+
+.carrito-info h5 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.carrito-info p {
+  margin-bottom: 0.3rem;
+}
+
+.carrito-info .btn-outline-light {
+  border-color: #f8f5e7;
+  color: #f8f5e7;
+  transition: all 0.3s ease;
+}
+
+.carrito-info .btn-outline-light:hover {
+  background-color: #f8f5e7;
+  color: #4E5B31;
+  transform: scale(1.05);
+}
+
+.carrito-hero {
+  background-image: url('../img/habitacion1.jpg');
+  /* Cambiá por una hero que te guste */
+  background-size: cover;
+  background-position: center;
+  height: 55vh;
+  position: relative;
+}
+
+.carrito-hero .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.carrito-hero .hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 2rem;
+}
+
+.carrito-hero .hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: var(--beige);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.carrito-hero .hero-content p {
+  color: var(--beige);
+  font-weight: 500;
+}
+
+.toast {
+  border-radius: 10px;
+  font-size: 0.95rem;
+  opacity: 0.95;
+  transition: all 0.3s ease-in-out;
+}
+
+.toast:hover {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.bg-olive {
+  background-color: var(--verde-oliva) !important;
+}
+
+/* ===============================
+   MIS RESERVAS
+=================================*/
+#tablaReservas {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#tablaReservas th {
+  background-color: var(--verde-oliva);
+  color: var(--beige);
+}
+
+#tablaReservas td {
+  vertical-align: middle;
+}
+
+.cancelar-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ===============================
+   MIS RESERVAS - DETALLE
+=================================*/
+#tablaReservas tr[data-bs-toggle="collapse"]:hover {
+  background-color: #f8f5e7;
+  transition: background-color 0.2s ease;
+}
+
+#tablaReservas .collapse td {
+  border-top: none !important;
+}
+
+#tablaReservas .table-bordered th,
+#tablaReservas .table-bordered td {
+  border-color: #dee2e6;
+}
+
+.toggle-detalle i {
+  transition: transform 0.3s ease;
+}
+
+.toggle-detalle[aria-expanded="true"] i {
+  transform: rotate(180deg);
+}
+
+.toggle-detalle {
+  font-size: 0.85rem;
+}
+
+.cancelar-btn {
+  font-size: 0.85rem;
+}
+
+/* ===============================
+   VISTA CONFIRMACIÓN
+=================================*/
+.modal-content {
+  border-radius: 15px;
+}
+
+.modal-header.bg-danger {
+  background-color: #b23b3b !important;
+}
+
+.btn-danger {
+  background-color: #c0392b !important;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #a93226 !important;
+}
+
+/* ===============================
+   RESPONSIVE
+=================================*/
+@media (max-width: 992px) {
+  .navbar .container {
+    flex-direction: column;
+  }
+
+  .navbar .navbar-brand {
+    margin-bottom: 10px;
+  }
+}
+
+.navbar .dropdown-menu {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 80vh;
+    background-image: url('../img/hero.jpg');
+    background-position: center center;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .subhero {
+    height: 45vh;
+  }
+
+  .alojamiento {
+    background-image: url('../img/habitacion1.jpg');
+  }
+
+  .actividades {
+    background-image: url('../img/actividad1.jpg');
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+}
+
+/* ===============================
+   SECCIONES Y TITULOS
+=================================*/
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: var(--verde-oliva);
+}
+
+.bg-beige {
+  background-color: var(--beige);
+}
+
+/* ===============================
+   BOTONES
+=================================*/
+.btn {
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.btn-success {
+  background-color: var(--verde-oliva);
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #3b4727;
+  transform: scale(1.05);
+}
+
+.btn-outline-success {
+  color: var(--verde-oliva);
+  border-color: var(--verde-oliva);
+}
+
+.btn-outline-success:hover {
+  background-color: var(--verde-oliva);
+  color: var(--blanco);
+}
+
+/* ===============================
+   CARDS
+=================================*/
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--blanco);
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--verde-oliva);
+}
+
+.card img {
+  height: 180px;
+  object-fit: cover;
+}
+
+/* ===============================
+   FORMULARIOS
+=================================*/
+form {
+  background-color: var(--blanco);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--verde-oliva);
+}
+
+.form-control {
+  border-radius: 10px;
+  border: 1px solid var(--gris-suave);
+}
+
+.form-control:focus {
+  border-color: var(--verde-oliva);
+  box-shadow: 0 0 5px rgba(78, 91, 49, 0.2);
+}
+
+/* ===============================
+   FOOTER
+=================================*/
+.bg-olive {
+  background-color: var(--verde-oliva);
+}
+
+footer {
+  color: var(--blanco);
+  font-size: 0.95rem;
+}
+
+footer a {
+  color: var(--blanco);
+  text-decoration: underline;
+}
+
+/* ===============================
+   RESPONSIVE
+=================================*/
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 1.9rem;
+  }
+
+  .hero {
+    height: 70vh;
+  }
+
+  .subhero {
+    height: 40vh;
+  }
+
+  .card img {
+    height: 160px;
+  }
+}

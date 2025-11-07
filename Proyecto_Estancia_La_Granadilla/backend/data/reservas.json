@@ -1,0 +1,256 @@
+[
+  {
+    "id": 1001,
+    "id_usuario": 3,
+    "fecha_creacion": "2025-08-15",
+    "estado": "confirmada",
+    "fecha_entrada": "2025-10-10",
+    "fecha_salida": "2025-10-13",
+    "noches": 3,
+    "habitaciones": [
+      {
+        "id_habitacion": 1,
+        "nombre": "Casa de Piedra",
+        "precio_noche_arg": 70000,
+        "noches": 3,
+        "subtotal_arg": 210000
+      }
+    ],
+    "senia_porcentaje": 30,
+    "senia_pagada": true,
+    "senia_vencimiento": "2025-08-17",
+    "pagos": [
+      {
+        "tipo": "seña",
+        "fecha": "2025-08-16",
+        "monto_ars": 63000,
+        "medio": "transferencia"
+      }
+    ],
+    "total_arg": 210000,
+    "requiere_factura": false,
+    "cuit": null
+  },
+  {
+    "id": 1002,
+    "id_usuario": 4,
+    "fecha_creacion": "2025-09-03",
+    "estado": "pendiente",
+    "fecha_entrada": "2025-11-01",
+    "fecha_salida": "2025-11-04",
+    "noches": 3,
+    "habitaciones": [
+      {
+        "id_habitacion": 3,
+        "nombre": "Casona -2 ",
+        "precio_noche_arg": 68000,
+        "noches": 3,
+        "subtotal_arg": 204000
+      }
+    ],
+    "senia_porcentaje": 30,
+    "senia_pagada": false,
+    "senia_vencimiento": "2025-09-06",
+    "pagos": [],
+    "total_arg": 204000,
+    "requiere_factura": false,
+    "cuit": null
+  },
+  {
+    "id": 1003,
+    "id_usuario": 5,
+    "fecha_creacion": "2025-07-10",
+    "estado": "finalizada",
+    "fecha_entrada": "2025-08-01",
+    "fecha_salida": "2025-08-05",
+    "noches": 4,
+    "habitaciones": [
+      {
+        "id_habitacion": 5,
+        "nombre": "La Isla",
+        "precio_noche_arg": 75000,
+        "noches": 4,
+        "subtotal_arg": 300000
+      }
+    ],
+    "senia_porcentaje": 25,
+    "senia_pagada": true,
+    "senia_vencimiento": "2025-07-12",
+    "pagos": [
+      {
+        "tipo": "seña",
+        "fecha": "2025-07-11",
+        "monto_ars": 75000,
+        "medio": "tarjeta"
+      },
+      {
+        "tipo": "final",
+        "fecha": "2025-08-05",
+        "monto_ars": 225000,
+        "medio": "efectivo"
+      }
+    ],
+    "total_arg": 300000,
+    "requiere_factura": true,
+    "cuit": "27-34567890-1"
+  },
+  {
+    "id": 1004,
+    "id_usuario": 6,
+    "fecha_creacion": "2025-06-20",
+    "estado": "cancelada",
+    "fecha_entrada": "2025-09-20",
+    "fecha_salida": "2025-09-22",
+    "noches": 2,
+    "habitaciones": [
+      {
+        "id_habitacion": 2,
+        "nombre": "Casona - 3",
+        "precio_noche_arg": 85000,
+        "noches": 2,
+        "subtotal_arg": 170000
+      }
+    ],
+    "senia_porcentaje": 30,
+    "senia_pagada": true,
+    "senia_vencimiento": "2025-06-22",
+    "pagos": [
+      {
+        "tipo": "seña",
+        "fecha": "2025-06-21",
+        "monto_ars": 51000,
+        "medio": "transferencia"
+      }
+    ],
+    "total_arg": 170000,
+    "requiere_factura": false,
+    "cuit": null,
+    "cancelacion": {
+      "fecha": "2025-09-10",
+      "politica": "Devolución 50% si cancela con >=10 días de antelación",
+      "retenido_ars": 25500,
+      "devuelto_ars": 25500,
+      "medio_devolucion": "transferencia"
+    }
+  },
+  {
+    "id": 1005,
+    "id_usuario": 3,
+    "fecha_creacion": "2025-09-01",
+    "estado": "confirmada",
+    "fecha_entrada": "2025-12-20",
+    "fecha_salida": "2025-12-23",
+    "noches": 3,
+    "habitaciones": [
+      {
+        "id_habitacion": 2,
+        "nombre": "Casona - 4",
+        "precio_noche_arg": 85000,
+        "noches": 3,
+        "subtotal_arg": 255000
+      }
+    ],
+    "senia_porcentaje": 30,
+    "senia_pagada": true,
+    "senia_vencimiento": "2025-09-03",
+    "pagos": [
+      {
+        "tipo": "seña",
+        "fecha": "2025-09-02",
+        "monto_ars": 76500,
+        "medio": "QR"
+      }
+    ],
+    "total_arg": 255000,
+    "requiere_factura": false,
+    "cuit": null,
+    "historial_asignacion": [
+      {
+        "fecha": "2025-09-01",
+        "accion": "seleccion_huesped",
+        "id_habitacion": 4
+      },
+      {
+        "fecha": "2025-09-01",
+        "accion": "reasignacion_admin",
+        "id_habitacion": 2,
+        "motivo": "ocupación óptima / capacidad suficiente"
+      }
+    ]
+  },
+  {
+    "id": 1006,
+    "id_usuario": 5,
+    "fecha_creacion": "2025-09-04",
+    "estado": "pendiente",
+    "fecha_entrada": "2026-01-10",
+    "fecha_salida": "2026-01-15",
+    "noches": 5,
+    "habitaciones": [
+      {
+        "id_habitacion": 1,
+        "nombre": "Casona - 5",
+        "precio_noche_arg": 70000,
+        "noches": 5,
+        "subtotal_arg": 350000
+      },
+      {
+        "id_habitacion": 3,
+        "nombre": "Galería 1",
+        "precio_noche_arg": 68000,
+        "noches": 5,
+        "subtotal_arg": 340000
+      }
+    ],
+    "senia_porcentaje": 30,
+    "senia_pagada": false,
+    "senia_vencimiento": "2025-09-08",
+    "pagos": [],
+    "total_arg": 690000,
+    "requiere_factura": false,
+    "cuit": null
+  },
+  {
+    "id": 1762537973826,
+    "id_usuario": 1762529971663,
+    "fecha_creacion": "2025-11-07",
+    "estado": "pendiente",
+    "fecha_entrada": "2025-11-07",
+    "fecha_salida": "2025-11-11",
+    "noches": 4,
+    "habitaciones": [
+      {
+        "id_habitacion": 1,
+        "precio_noche_arg": 70000,
+        "noches": 4
+      }
+    ],
+    "total_arg": 280000,
+    "pagos": []
+  },
+  {
+    "id": 1762540795614,
+    "id_usuario": 1762529971663,
+    "fecha_creacion": "2025-11-07",
+    "estado": "cancelada",
+    "fecha_entrada": "2025-11-07",
+    "fecha_salida": "2025-11-09",
+    "noches": 2,
+    "habitaciones": [
+      {
+        "id_habitacion": 2,
+        "precio_noche_arg": 85000,
+        "noches": 2
+      }
+    ],
+    "total_arg": 170000,
+    "pagos": [],
+    "cancelacion": {
+      "fecha": "2025-11-07",
+      "politica": "Cancelación manual",
+      "retenido_ars": 0,
+      "devuelto_ars": 0,
+      "medio_devolucion": null
+    }
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "nombre": "Casona - Habitación N° 3",
+    "tipo": "Triple",
+    "capacidad": 2,
+    "precio_noche_arg": 70000,
+    "ubicacion": "Casco principal",
+    "activa": false,
+    "imagen": null
+  },
+  {
+    "id": 2,
+    "nombre": "Casona - Habitación N° 4",
+    "tipo": "Triple",
+    "capacidad": 3,
+    "precio_noche_arg": 85000,
+    "ubicacion": "Casco principal",
+    "activa": true,
+    "imagen": null
+  },
+  {
+    "id": 3,
+    "nombre": "Galería - Habitación 14",
+    "tipo": "Doble",
+    "capacidad": 2,
+    "precio_noche_arg": 68000,
+    "ubicacion": "Ala Galería",
+    "activa": true,
+    "imagen": null
+  },
+  {
+    "id": 4,
+    "nombre": "Chalet del Alto",
+    "tipo": "Suite",
+    "capacidad": 4,
+    "precio_noche_arg": 120000,
+    "ubicacion": "Sector Alto",
+    "activa": true,
+    "imagen": null
+  },
+  {
+    "id": 5,
+    "nombre": "La Isla",
+    "tipo": "Suite",
+    "capacidad": 5,
+    "precio_noche_arg": 75000,
+    "ubicacion": "Sector Río",
+    "activa": true,
+    "imagen": null
+  }
+]

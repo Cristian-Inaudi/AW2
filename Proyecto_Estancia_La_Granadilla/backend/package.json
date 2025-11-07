@@ -1,0 +1,28 @@
+{
+  "name": "segunda_entrega",
+  "version": "1.0.0",
+  "description": "Servidor Express.js para gestionar usuarios, habitaciones y reservas.",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "api",
+    "reservas",
+    "habitaciones",
+    "usuarios"
+  ],
+  "author": "Cristián Inaudi",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
