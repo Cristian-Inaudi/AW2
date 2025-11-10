@@ -56,11 +56,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const nuevaReserva = {
-      id_usuario: Number(user.id),
+      id_usuario: user._id || user.id,
       fecha_entrada: fechaInicio,
       fecha_salida: fechaFin,
       habitaciones: carrito.map(h => ({
-        id_habitacion: h.id,
+        id_habitacion: h._id || h.id,
         precio_noche_arg: h.precio_noche_arg,
         noches
       }))

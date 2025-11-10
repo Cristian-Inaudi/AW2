@@ -456,7 +456,7 @@ a.btn.disabled {
 @media (max-width: 768px) {
   .hero {
     height: 80vh;
-    background-image: url('../img/hero.jpg');
+    background-image: url('../img/imagen_principal.jpg');
     background-position: center center;
   }
 

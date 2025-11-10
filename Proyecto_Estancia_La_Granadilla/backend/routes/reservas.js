@@ -1,88 +1,64 @@
 import express from "express";
-import fs from "fs";
+import Reserva from "../models/Reserva.js";
+import Usuario from "../models/Usuario.js";
+import Habitacion from "../models/Habitacion.js";
 
 const router = express.Router();
 
-const filePath = "./data/reservas.json";
-
-const readData = () => JSON.parse(fs.readFileSync(filePath));
-const writeData = (data) => fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-
-const readUsuarios = () => JSON.parse(fs.readFileSync("./data/usuarios.json"));
-const readHabitaciones = () => JSON.parse(fs.readFileSync("./data/habitaciones.json"));
-
-// Chequea solapamiento de fechas
+// Función para verificar si se solapan fechas
 const fechasSolapan = (entrada1, salida1, entrada2, salida2) => {
   return (entrada1 <= salida2) && (salida1 >= entrada2);
 };
 
-// GET --> Obtiene toda las reservas
-router.get("/", (req, res) => {
+// GET → todas las reservas
+router.get("/", async (req, res) => {
   try {
-    const reservas = readData();
-    res.status(200).json(reservas);
+    const reservas = await Reserva.find();
+    res.json(reservas);
   } catch (error) {
-    res.status(500).json({ mensaje: "Error al leer las reservas", error: error.message });
+    res.status(500).json({ error: "Error al leer las reservas", detalle: error.message });
   }
 });
 
-// POST → Genera nueva reserva con validaciones de disponibilidad
-router.post("/", (req, res) => {
+// POST → crear nueva reserva
+router.post("/", async (req, res) => {
   try {
     const { id_usuario, fecha_entrada, fecha_salida, habitaciones } = req.body;
 
-    // Validación de campos obligatorios
-    if (!id_usuario || !fecha_entrada || !fecha_salida || !habitaciones || habitaciones.length === 0) {
-      return res.status(400).json({
-        error: "Faltan datos necesarios: id_usuario, fecha_entrada, fecha_salida, habitaciones"
-      });
+    if (!id_usuario || !fecha_entrada || !fecha_salida || !habitaciones?.length) {
+      return res.status(400).json({ error: "Faltan datos obligatorios." });
     }
 
-    // Validar campos no permitidos
-    const camposValidos = ["id_usuario", "fecha_entrada", "fecha_salida", "habitaciones"];
-    const camposRecibidos = Object.keys(req.body);
-    const camposInvalidos = camposRecibidos.filter(c => !camposValidos.includes(c));
-
-    if (camposInvalidos.length > 0) {
-      return res.status(400).json({
-        error: `Campos no permitidos: ${camposInvalidos.join(", ")}`,
-        permitidos: camposValidos
-      });
-    }
-
-    // Leer datos actuales
-    const usuarios = readUsuarios();
-    const habitacionesData = readHabitaciones();
-    const reservas = readData();
-
-    // Validar que el usuario exista
-    const usuario = usuarios.find(u => u.id === id_usuario);
+    // Validar usuario
+    const usuario = await Usuario.findById(id_usuario);
     if (!usuario) {
       return res.status(404).json({ error: "Usuario no encontrado" });
     }
 
-    // Validar existencia y disponibilidad de habitaciones
-    for (const hab of habitaciones) {
-      const existe = habitacionesData.find(h => h.id === hab.id_habitacion);
-      if (!existe) {
-        return res.status(404).json({ error: `Habitación con id ${hab.id_habitacion} no encontrada` });
-      }
+    // Validar existencia de habitaciones
+    const habitacionesBD = await Habitacion.find();
 
-      // Revisar si está ocupada en otra reserva pendiente o confirmada
-      for (const reserva of reservas) {
-        if (["confirmada", "pendiente"].includes(reserva.estado)) {
-          for (const habRes of reserva.habitaciones) {
-            if (habRes.id_habitacion === hab.id_habitacion) {
-              if (fechasSolapan(
-                new Date(fecha_entrada),
-                new Date(fecha_salida),
-                new Date(reserva.fecha_entrada),
-                new Date(reserva.fecha_salida)
-              )) {
-                return res.status(400).json({
-                  error: `La habitación ${hab.id_habitacion} no está disponible entre ${fecha_entrada} y ${fecha_salida}`
-                });
-              }
+    for (const hab of habitaciones) {
+      const idHabitacion = hab.id_habitacion || hab._id || hab.id;
+      const existe = habitacionesBD.find(h =>
+        h._id.equals(idHabitacion?.toString())
+      );
+
+      if (!existe) {
+        console.warn("⚠️ No se encontró la habitación:", idHabitacion, "→ existentes:", habitacionesBD.map(h => h._id.toString()));
+        return res.status(404).json({ error: `Habitación con id ${idHabitacion} no encontrada` });
+      }
+      // Verificar disponibilidad
+      const reservasActivas = await Reserva.find({ estado: { $in: ["pendiente", "confirmada"] } });
+
+      for (const r of reservasActivas) {
+        for (const h of r.habitaciones) {
+          if (h.id_habitacion === hab.id_habitacion) {
+            if (fechasSolapan(new Date(fecha_entrada), new Date(fecha_salida),
+              new Date(r.fecha_entrada), new Date(r.fecha_salida))) {
+              return res.status(400).json({
+                error: `La habitación ${existe.nombre} no está disponible entre ${fecha_entrada} y ${fecha_salida}`
+              });
             }
           }
         }
@@ -90,22 +66,22 @@ router.post("/", (req, res) => {
     }
 
     // Crear la nueva reserva
-    const nuevaReserva = {
-      id: Date.now(),
+    const noches = Math.ceil((new Date(fecha_salida) - new Date(fecha_entrada)) / (1000 * 60 * 60 * 24));
+    const total_arg = habitaciones.reduce((acc, h) => acc + (h.precio_noche_arg * noches), 0);
+
+    const nuevaReserva = new Reserva({
       id_usuario,
       fecha_creacion: new Date().toISOString().split("T")[0],
       estado: "pendiente",
       fecha_entrada,
       fecha_salida,
-      noches: Math.ceil((new Date(fecha_salida) - new Date(fecha_entrada)) / (1000 * 60 * 60 * 24)),
+      noches,
       habitaciones,
-      total_arg: habitaciones.reduce((acc, h) => acc + (h.precio_noche_arg * (h.noches || 1)), 0),
+      total_arg,
       pagos: []
-    };
+    });
 
-    // Guardar y devolver respuesta
-    reservas.push(nuevaReserva);
-    writeData(reservas);
+    await nuevaReserva.save();
 
     res.status(201).json({
       mensaje: "Reserva creada correctamente",
@@ -113,29 +89,23 @@ router.post("/", (req, res) => {
     });
 
   } catch (error) {
-    res.status(500).json({ mensaje: "Error al crear la reserva", error: error.message });
+    console.error("❌ Error al crear la reserva:", error);
+    res.status(500).json({ error: "Error al crear la reserva", detalle: error.message });
   }
 });
 
-// PUT → Cancela una reserva
-router.put("/:id/cancelar", (req, res) => {
+// PUT → cancelar una reserva
+router.put("/:id/cancelar", async (req, res) => {
   try {
-    const reservas = readData();
-    const id = parseInt(req.params.id);
+    const { id } = req.params;
 
-    const index = reservas.findIndex(r => r.id === id);
-    if (index === -1) {
-      return res.status(404).json({ error: "Reserva no encontrada" });
-    }
+    const reserva = await Reserva.findById(id);
+    if (!reserva) return res.status(404).json({ error: "Reserva no encontrada" });
 
-    const reserva = reservas[index];
-
-    // Validar que la reserva pueda cancelarse
     if (["cancelada", "finalizada"].includes(reserva.estado)) {
       return res.status(400).json({ error: `La reserva ya está ${reserva.estado}` });
     }
 
-    // Marcar como cancelada
     reserva.estado = "cancelada";
     reserva.cancelacion = {
       fecha: new Date().toISOString().split("T")[0],
@@ -145,16 +115,12 @@ router.put("/:id/cancelar", (req, res) => {
       medio_devolucion: null
     };
 
-    reservas[index] = reserva;
-    writeData(reservas);
+    await reserva.save();
 
-    res.status(200).json({
-      mensaje: "Reserva cancelada correctamente. Habitaciones liberadas.",
-      reserva
-    });
+    res.status(200).json({ mensaje: "Reserva cancelada correctamente", reserva });
 
   } catch (error) {
-    res.status(500).json({ mensaje: "Error al cancelar la reserva", error: error.message });
+    res.status(500).json({ error: "Error al cancelar la reserva", detalle: error.message });
   }
 });
 

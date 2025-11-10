@@ -14,25 +14,39 @@ export async function getHabitacionesDisponibles(inicio, fin) {
   return res.json();
 }
 
-// Crear una nueva reserva
+// Crear una nueva reserva - Protegida con token
 export async function crearReserva(reserva) {
+  const token = localStorage.getItem("token");
+
   const res = await fetch(`${API_URL}/reservas`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
     body: JSON.stringify(reserva)
   });
 
+  const data = await res.json();
   if (!res.ok) {
-    const errData = await res.json();
-    console.error("❌ Error del backend:", errData);
-    throw new Error(errData.error || "Error al crear la reserva");
+    console.error("❌ Error del backend:", data);
+    throw new Error(data.error || "Error al crear la reserva");
   }
-  return res.json();
+
+  return data;
 }
 
 // Obtener todas las reservas registradas
 export async function getReservas() {
-  const res = await fetch(`${API_URL}/reservas`);
+  const token = localStorage.getItem("token");
+
+  const res = await fetch(`${API_URL}/reservas`, {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-Type": "application/json"
+    }
+  });
+
   if (!res.ok) throw new Error("Error al obtener reservas");
   return res.json();
 }
@@ -61,5 +75,9 @@ export async function loginUsuario(email, contrasena) {
 
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || "Error en el inicio de sesión");
+
+  localStorage.setItem("usuarioActivo", JSON.stringify(data.usuario));
+  localStorage.setItem("token", data.token);
+
   return data;
 }

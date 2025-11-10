@@ -5,12 +5,20 @@ let listaReservas = [];
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
+    const usuario = JSON.parse(localStorage.getItem("usuarioActivo"));
     listaHabitaciones = asignarImagenes(await getHabitaciones());
-    listaReservas = await getReservas();
+
+    // Si el usuario está logueado, cargamos reservas para marcar ocupadas
+    if (usuario) {
+      listaReservas = await getReservas();
+    } else {
+      listaReservas = [];
+    }
+
     renderHabitaciones(listaHabitaciones);
     validarFechas();
   } catch (error) {
-    console.error("Error al cargar datos:", error);
+    console.error("Error al cargar datos iniciales:", error);
     document.getElementById("habitaciones").innerHTML = `
       <p class="text-center text-danger">Error al cargar las habitaciones o reservas.</p>`;
   }
@@ -70,40 +78,41 @@ async function aplicarFiltros() {
   const inicio = document.getElementById("fechaInicio").value;
   const fin = document.getElementById("fechaFin").value;
 
-  // Validar fechas
   if (inicio && fin && fin < inicio) {
-    alert("⚠️ La fecha de salida no puede ser anterior a la fecha de entrada.");
+    mostrarToast("⚠️ La fecha de salida no puede ser anterior a la de entrada.", "warning");
     return;
   }
 
-  // Si hay fechas: pedir disponibilidad al backend
-  if (inicio && fin) {
-    localStorage.setItem("fechaInicio", inicio);
-    localStorage.setItem("fechaFin", fin);
-    try {
+  try {
+    let filtradas = [];
+
+    if (inicio && fin) {
+      localStorage.setItem("fechaInicio", inicio);
+      localStorage.setItem("fechaFin", fin);
+
       const disponibles = await getHabitacionesDisponibles(inicio, fin);
 
-      const filtradas = tipo
-        ? disponibles.filter(h => h.tipo && h.tipo.trim().toLowerCase() === tipo)
+      filtradas = tipo
+        ? disponibles.filter(h => h.tipo?.trim().toLowerCase() === tipo)
         : disponibles;
 
-      const adaptadas = asignarImagenes(filtradas.map(h => ({
-        ...h,
-        ocupada: !h.disponible
-      })));
-
-      renderHabitaciones(adaptadas);
-    } catch (error) {
-      console.error("Error al obtener disponibilidad:", error);
-      alert("❌ No se pudo obtener la disponibilidad desde el servidor.");
+      listaHabitaciones = asignarImagenes(
+        filtradas.map(h => ({
+          ...h,
+          id: h._id?.toString(),
+          ocupada: !h.disponible
+        }))
+      );
+    } else {
+      filtradas = tipo
+        ? listaHabitaciones.filter(h => h.tipo?.trim().toLowerCase() === tipo)
+        : listaHabitaciones;
     }
-  } else {
-    // Sin fechas: filtrado local
-    const filtradas = tipo
-      ? listaHabitaciones.filter(h => h.tipo && h.tipo.trim().toLowerCase() === tipo)
-      : listaHabitaciones;
 
-    renderHabitaciones(filtradas);
+    renderHabitaciones(listaHabitaciones);
+  } catch (error) {
+    console.error("❌ Error al filtrar habitaciones:", error);
+    mostrarToast("Error al obtener disponibilidad del servidor.", "error");
   }
 }
 
@@ -158,7 +167,9 @@ function renderHabitaciones(habitaciones) {
   // Eventos de los botones
   document.querySelectorAll(".agregar-btn").forEach(btn => {
     btn.addEventListener("click", () => {
-      const id = parseInt(btn.dataset.id);
+      const id = btn.dataset.id;
+      console.log("🛏️ Clic en habitación:", id);
+      console.log("📦 Lista actual:", listaHabitaciones.map(h => h.id));
       agregarAlCarrito(id);
     });
   });

@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const botonCancelar =
           r.estado === "pendiente"
-            ? `<button class="btn btn-outline-danger btn-sm cancelar-btn" data-id="${r.id}">Cancelar</button>`
+            ? `<button class="btn btn-outline-danger btn-sm cancelar-btn" data-id="${r._id}">Cancelar</button>`
             : `<span class="text-muted">-</span>`;
 
         const botonExpandir = `
@@ -44,11 +44,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         `;
 
         const habitacionesHTML = (r.habitaciones || []).map(h => {
-          const habData = habitaciones.find(x => x.id === h.id_habitacion);
+          const habData = habitaciones.find(
+            x => x._id?.toString() === h.id_habitacion?.toString()
+          );
+
           const nombre = habData?.nombre || `Habitación N°${h.id_habitacion}`;
           const tipo = habData?.tipo || "—";
           const precio = Number(h.precio_noche_arg).toLocaleString("es-AR");
           const subtotal = (h.precio_noche_arg * (h.noches || 1)).toLocaleString("es-AR");
+
           return `
             <tr>
               <td>${nombre}</td>
@@ -62,7 +66,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         return `
           <tr>
-            <td>${r.id}</td>
+            <td>#${r._id?.slice(-6) || "—"}</td>
             <td>${r.fecha_entrada}</td>
             <td>${r.fecha_salida}</td>
             <td>${r.noches}</td>
@@ -123,10 +127,25 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("btnConfirmarCancelacion").addEventListener("click", async () => {
       if (!reservaAEliminar) return;
 
+      const token = localStorage.getItem("token");
+      if (!token) {
+        mostrarToast("⚠️ Debes iniciar sesión para cancelar reservas.", "warning");
+        setTimeout(() => (window.location.href = "login.html"), 1500);
+        return;
+      }
+
       try {
-        const res = await fetch(`http://localhost:5000/reservas/${reservaAEliminar}/cancelar`, { method: "PUT" });
+        const res = await fetch(`http://localhost:5000/reservas/${reservaAEliminar}/cancelar`, {
+          method: "PUT",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          }
+        });
+
         if (!res.ok) throw new Error("Error al cancelar reserva");
         const data = await res.json();
+
         console.log("✅ Reserva cancelada:", data);
         mostrarToast("🗓️ Reserva cancelada correctamente.", "success");
 

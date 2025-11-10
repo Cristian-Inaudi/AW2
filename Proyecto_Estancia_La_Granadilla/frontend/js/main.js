@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("cerrarSesion").addEventListener("click", (e) => {
       e.preventDefault();
       localStorage.removeItem("usuarioActivo");
+      localStorage.removeItem("token");
       mostrarToast("Sesión cerrada correctamente 👋", "info");
       setTimeout(() => (window.location.href = "login.html"), 1500);
     });
@@ -48,6 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
     loginLi.className = "nav-item";
     loginLi.innerHTML = `<a id="nav-login" class="nav-link fw-semibold text-success" href="login.html">Iniciar sesión</a>`;
     nav.appendChild(loginLi);
+  }
+
+  const linkMiReserva = document.querySelector('a[href="carrito.html"]');
+  if (linkMiReserva && !usuarioActivo) {
+    linkMiReserva.parentElement.style.display = "none";
   }
 });
 

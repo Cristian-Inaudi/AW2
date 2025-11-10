@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (toastRegistro) toastRegistro.show();
   }
 
-  // Login
+  // Manejar login
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -33,15 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      console.log("🟢 Intentando iniciar sesión...");
       const data = await loginUsuario(email, contrasena);
-      localStorage.setItem("usuarioActivo", JSON.stringify(data.usuario));
 
       if (toastOk) toastOk.show();
       setTimeout(() => {
         window.location.href = "index.html";
       }, 2000);
-
     } catch (err) {
       console.error("❌ Error en login:", err);
       if (toastError) toastError.show();
