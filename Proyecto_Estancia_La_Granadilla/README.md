@@ -5,6 +5,7 @@
 - Registro e inicio de sesión de usuarios con contraseña encriptada (bcrypt).
 - Autenticación mediante tokens JWT.
 - Consulta y reserva de habitaciones disponibles.
+- Habitación ya reservada en determinada fecha se muestra en estado de Ocupada y no permite reservar sobre dicha fecha.
 - Panel personal de reservas del usuario logueado.
 - Cancelación de reservas con confirmación.
 - Conexión a base de datos NoSQL MongoDB Atlas.
@@ -47,8 +48,13 @@
 npm start
 
 ## Servidor
-Servidor en: `http://localhost:5000`
+Backend disponible en: `http://localhost:5000`
+Frontend disponible en: `http://127.0.0.1:5500/frontend/index.html`
 Base de datos: MongoDB Atlas
+
+## Usuario de ejemplo
+Usuario:    cris@gmail.com
+Contraseña: 123
 
 ## Autor: Cristián Inaudi  
 ## Analista en Sistemas y Desarrollo de Software – IES 21
