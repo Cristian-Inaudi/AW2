@@ -2,7 +2,7 @@ const API_URL =
   window.location.hostname === "localhost" ||
   window.location.hostname === "127.0.0.1"
     ? "http://localhost:5000"
-    : "https://granadilla-api.onrender.com";
+    : "https://aw2-bxj8.onrender.com";
 
 // Obtener listado de habitaciones
 export async function getHabitaciones() {
