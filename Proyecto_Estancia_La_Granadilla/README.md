@@ -47,9 +47,15 @@
 ## Ejecución
 npm start
 
-## Servidor
-Backend disponible en: `http://localhost:5000`
-Frontend disponible en: `http://127.0.0.1:5500/frontend/index.html`
+## Servidores
+El sistema puede ejecutarse de dos maneras:
+- Web Pública:
+	+ Frontend disponible en: https://cristian-inaudi.github.io/AW2/
+	+ Backend disponible en: https://aw2-bxj8.onrender.com
+- Local:
+	+ Frontend disponible en: `http://127.0.0.1:5500/frontend/index.html`
+	+ Backend disponible en: `http://localhost:5000`
+	
 Base de datos: MongoDB Atlas
 
 ## Usuario de ejemplo
