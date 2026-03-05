@@ -1,4 +1,5 @@
 import { getReservas } from "./api.js";
+import { API_URL } from "./api.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const user = JSON.parse(localStorage.getItem("usuarioActivo"));
@@ -14,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Cargar reservas y habitaciones
     const [reservas, habitaciones] = await Promise.all([
       getReservas(),
-      fetch("http://localhost:5000/habitaciones").then(r => r.json())
+      fetch(`${API_URL}/habitaciones`).then(r => r.json())
     ]);
 
     const misReservas = reservas.filter(r => r.id_usuario === user.id);
@@ -135,7 +136,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       try {
-        const res = await fetch(`http://localhost:5000/reservas/${reservaAEliminar}/cancelar`, {
+        const res = await fetch(`${API_URL}/reservas/${reservaAEliminar}/cancelar`, {
           method: "PUT",
           headers: {
             "Authorization": `Bearer ${token}`,
